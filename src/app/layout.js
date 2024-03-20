@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import Navbar from "@/components/navbar/page";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -11,7 +13,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`bg-cover bg-no-repeat ${inter.className}`}
+        style={{
+          backgroundImage:
+            "url(https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQTqWxs3DSgcZpqO_YQji7KgkTG2akdwBBFOb9IJezZNgRdqIqT096jDAUIRkpBO69DVrtJL1gfAOy-d5nGzokZ3H5jezWZcNebgEZUSeX2ToAp2GuP2-a5q6p3Do9vLYg6xU7Ntl2Om3ulfmdWuEx7DB.jpg?r=957)",
+          cover: "no-repeat",
+        }}
+      >
+        <div className="max-w-3xl mx-auto p-4">
+          <Navbar />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
