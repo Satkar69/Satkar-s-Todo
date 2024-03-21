@@ -3,29 +3,25 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AddTopic() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+export default function EditTaskForm({ id, title, description }) {
+  const [newTitle, setNewTitle] = useState(title);
+  const [newDescription, setNewDescription] = useState(description);
   const router = useRouter();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!title || !description) {
-      alert("Title and discription are required");
-      return;
-    }
-
     try {
-      const res = await fetch("http://localhost:3000/api/tasks", {
-        method: "POST",
+      const res = await fetch(`http://localhost:3000/api/tasks/${id}`, {
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ title, description }),
+        body: JSON.stringify({ title: newTitle, description: newDescription }),
       });
+
       if (!res.ok) {
-        throw new Error("Failed to create the task");
+        throw new Error("Failed to update the task");
       }
       router.refresh();
       router.push("/");
@@ -39,10 +35,9 @@ export default function AddTopic() {
       <div className="p-4 my-2 border bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-none">
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">
           <h1 className="my-1 text-white text-xl font-bold">Task Title</h1>
-          {/* with the 'e' parameter we can get the data from the input field */}
           <input
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
+            onChange={(e) => setNewTitle(e.target.value)}
+            value={newTitle}
             className="p-2 bg-gray-400 text-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-none"
             type="text"
             placeholder="Task title"
@@ -51,8 +46,8 @@ export default function AddTopic() {
             Task Description
           </h1>
           <input
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
+            onChange={(e) => setNewDescription(e.target.value)}
+            value={newDescription}
             className="p-2 bg-gray-400 text-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border-none"
             type="text"
             placeholder="Task Description"
@@ -61,7 +56,7 @@ export default function AddTopic() {
             type="submit"
             className="mt-3 text-white font-semibold rounded-lg bg-green-500 py-3 px-6 border-none backdrop-filter backdrop-blur-sm bg-opacity-40 hover:bg-green-600"
           >
-            Add Task
+            Update Task
           </button>
         </form>
       </div>

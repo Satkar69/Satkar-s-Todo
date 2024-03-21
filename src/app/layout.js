@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`bg-cover bg-no-repeat ${inter.className}`}
+        className={inter.className}
         style={{
           backgroundImage:
-            "url(https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQTqWxs3DSgcZpqO_YQji7KgkTG2akdwBBFOb9IJezZNgRdqIqT096jDAUIRkpBO69DVrtJL1gfAOy-d5nGzokZ3H5jezWZcNebgEZUSeX2ToAp2GuP2-a5q6p3Do9vLYg6xU7Ntl2Om3ulfmdWuEx7DB.jpg?r=957)",
+            "url(https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2018/11/dark-wallpapers.jpg)",
           cover: "no-repeat",
         }}
       >
