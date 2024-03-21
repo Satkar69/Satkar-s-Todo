@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function AddTopic() {
+  // what I understood: In the destructuring array of the useState the first index is variable whose behavoir can be controlled by second index a setter for the variable
+  // We can provide an initial default value to the useState
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const router = useRouter();
